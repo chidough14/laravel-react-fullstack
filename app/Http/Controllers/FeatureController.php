@@ -77,6 +77,8 @@ class FeatureController extends Controller
         ]);
 
         $feature->update($data);
+
+        return to_route('feature.index')->with('success', 'Feature updated successfully');
     }
 
     /**

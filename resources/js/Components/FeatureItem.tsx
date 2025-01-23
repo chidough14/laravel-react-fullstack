@@ -1,6 +1,8 @@
 import { Feature } from "@/types";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
+import Dropdown from "./Dropdown";
+import FeaturesActionDropdown from "./FeaturesActionDropdown";
 
 export default function FeatureItem({ feature }: { feature: Feature }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -18,7 +20,7 @@ export default function FeatureItem({ feature }: { feature: Feature }) {
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
             </svg>
           </button>
-          
+
           <span className="text-2xl font-semibold">12</span>
 
           <button>
@@ -39,17 +41,21 @@ export default function FeatureItem({ feature }: { feature: Feature }) {
             <>
               <p>{isExpanded ? feature.description : `${(feature.description || '').slice(0, 200)}...`}</p>
               <button onClick={toggleReadMore} className="text-amber-500 hover:underline">
-                { isExpanded ? 'Read Less': 'Read More' }
+                {isExpanded ? 'Read Less' : 'Read More'}
               </button>
-            </> 
+            </>
           )}
 
           {(feature.description || '').length <= 200 && (
             <>
               <p>{feature.description}</p>
-            </> 
+            </>
           )}
 
+        </div>
+
+        <div>
+          <FeaturesActionDropdown feature={feature} />
         </div>
       </div>
     </div>
